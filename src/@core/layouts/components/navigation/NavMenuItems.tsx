@@ -1,5 +1,5 @@
 // ** Types Import
-import { Settings } from 'src/@core/context/types'
+import { Template } from 'src/@core/context/types'
 import { NavLink, NavSectionTitle, NavMenu } from 'src/@core/layouts/types'
 
 // ** Custom Menu Components
@@ -8,10 +8,10 @@ import NavMenuSectionTitle from './NavMenuSectionTitle'
 
 interface Props {
   navHover?: boolean
-  settings: Settings
+  template: Template
   navMenu?: NavMenu
   navVisible?: boolean
-  saveSettings: (values: Settings) => void
+  saveTemplate: (values: Template) => void
 }
 
 const resolveNavItemComponent = (item: NavLink | NavSectionTitle) => {

@@ -1,9 +1,9 @@
 import {styled} from "@mui/material/styles";
 import Box, {BoxProps} from "@mui/material/Box";
 import Link from "next/link";
-import {Settings} from "../../../context/types";
+import {Template} from "src/@core/context/types";
 
-const NavHeaderWrapper = styled(Box)<BoxProps>((theme) => ({
+const NavHeaderWrapper = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -19,15 +19,15 @@ const StyledLink = styled('a')({
 })
 
 type Props = {
-  hidden: boolean
-  settings: Settings
-  saveSettings: (values: Settings) => void
+  hidden?: boolean
+  template: Template
+  saveTemplate: (values: Template) => void
 }
 
 const NavHeader = (props: Props) => {
-  const {settings} = props;
+  const {template} = props;
 
-  const {logo} = settings;
+  const {logo} = template;
 
   return <NavHeaderWrapper>
     <Link href="/" passHref>

@@ -2,14 +2,14 @@
 import { Theme } from '@mui/material/styles'
 
 // ** Type Imports
-import { Settings } from 'src/@core/context/types'
+import { Template } from 'src/@core/context/types'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
-const GlobalStyles = (theme: Theme, settings: Settings) => {
+const GlobalStyles = (theme: Theme, template: Template) => {
   // ** Vars
-  const { mode } = settings
+  const { mode } = template
 
   const perfectScrollbarThumbBgColor = () => {
     if (mode === 'light') {

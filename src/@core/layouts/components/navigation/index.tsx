@@ -1,5 +1,5 @@
-import {Settings} from "src/@core/context/types";
-import {ReactNode, useRef} from "react";
+import {Template} from "src/@core/context/types";
+import {useRef} from "react";
 import Drawer from "./Drawer";
 import NavHeader from "./NavHeader";
 import NavMenuItems from "./NavMenuItems";
@@ -7,6 +7,7 @@ import {NavMenu} from "../../types";
 import {styled} from "@mui/material/styles";
 import Box, {BoxProps} from "@mui/material/Box";
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css'
 import {List} from "@mui/material";
 
 
@@ -25,21 +26,22 @@ const StyledBoxForShadow = styled(Box)<BoxProps>(({ theme }) => ({
 }))
 
 type NavigationProps = {
-  hidden: boolean
+  hidden?: boolean
   navMenu?: NavMenu
-  navVisible: boolean
-  setNavVisible: (value: boolean) => void
-  setNavHover: (values: boolean) => void
-  children: ReactNode
-  settings: Settings
-  saveSettings: (settings: Settings) => void
+  navHover?: boolean
+  setNavHover?: (values: boolean) => void
+  navVisible?: boolean
+  setNavVisible?: (value: boolean) => void
+  template: Template
+  saveTemplate: (template: Template) => void
 }
 
 const Navigation = (props: NavigationProps) => {
-  const {hidden, settings, children} = props;
+  const {
+    hidden = false,
+    template,
+  } = props;
   const shadowRef = useRef(null)
-
-  const ScrollWrapper = hidden ? Box : PerfectScrollbar
 
   const handleInfiniteScroll = (ref: HTMLElement) => {
     if (ref) {
@@ -57,15 +59,29 @@ const Navigation = (props: NavigationProps) => {
 
   const scrollMenu = (container: any) => {
     // @ts-ignore
-    shadowRef.current.classList.add('d-block')
+    if(shadowRef.current && container) {
+      if(container.scrollTop > 0) {
+        // @ts-ignore
+        if(!shadowRef.current.classList.contains('d-block')) {
+          // @ts-ignore
+          shadowRef.current.classList.add('d-block')
+        }
+      } else {
+        // @ts-ignore
+        shadowRef.current.classList.remove('d-block')
+      }
+    }
+
   }
 
   return <Drawer {...props}>
     <NavHeader {...props} />
-    <StyledBoxForShadow />
+    <StyledBoxForShadow className="d-block" />
     <Box sx={{ position: 'relative', overflow: 'hidden' }}>
       <PerfectScrollbar
+        containerRef={handleInfiniteScroll}
         options={{ wheelPropagation: false }}
+        onScrollY={scrollMenu}
       >
         <List className='nav-items'>
           <NavMenuItems {...props} />

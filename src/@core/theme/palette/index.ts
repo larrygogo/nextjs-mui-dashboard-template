@@ -1,13 +1,11 @@
 // ** Type Imports
 import { PaletteMode } from '@mui/material'
-import {ThemeColor} from "src/@core/context/types";
+import {ThemeColor} from "src/@core/layouts/types";
 import {hexToRGBA} from "src/@core/utils/hex-to-rgba";
 
 const DefaultPalette = (mode: PaletteMode, themeColor: ThemeColor) => {
-  console.log(themeColor)
-
   // ** Vars
-  const lightColor = '#006440'
+  const lightColor = '#14171C'
   const darkColor = '#FFFFFF'
 
   const mainColor = mode === 'light' ? lightColor : darkColor
@@ -38,9 +36,9 @@ const DefaultPalette = (mode: PaletteMode, themeColor: ThemeColor) => {
     },
     mode: mode,
     primary: {
-      light: '#9E69FD',
-      main: '#9155FD',
-      dark: '#804BDF',
+      light: themeColor.light,
+      main: themeColor.main,
+      dark: themeColor.dark,
       contrastText: '#FFF'
     },
     secondary: {

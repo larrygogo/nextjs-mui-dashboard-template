@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import {Settings} from "../context/types";
+import {Template} from "src/@core/context/types";
 
 export type Layout = 'vertical' | 'horizontal' | 'blank' | 'blankWithAppBar'
 
@@ -30,16 +30,17 @@ export type NavSectionTitle = {
 export type NavMenu = (NavLink | NavSectionTitle)[]
 
 export type LayoutProps = {
-  hidden: boolean
-  settings: Settings
-  saveSettings: (values: Settings) => void
+  template: Template
+  saveTemplate: (values: Template) => void
   children: ReactNode
+  menuBrand?: ((props?: any) => ReactNode) | ReactNode
   navMenu?: NavMenu
-  appBarContent?: (props?: any) => ReactNode
-  navMenuContent?: (props?: any) => ReactNode
-  navMenuBranding?: (props?: any) => ReactNode
-  afterNavMenuContent?: (props?: any) => ReactNode
-  beforeNavMenuContent?: (props?: any) => ReactNode
+  appBarContent?: ((props?: any) => ReactNode) | ReactNode
+  footerContent?: ((props?: any) => ReactNode) | ReactNode
+  navMenuContent?: ((props?: any) => ReactNode) | ReactNode
+  navMenuBranding?: ((props?: any) => ReactNode) | ReactNode
+  afterNavMenuContent?: ((props?: any) => ReactNode) | ReactNode
+  beforeNavMenuContent?: ((props?: any) => ReactNode) | ReactNode
 }
 
 export type BlankLayoutProps = {

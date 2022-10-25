@@ -1,24 +1,19 @@
 import {ReactNode} from "react";
-import {useSettings} from "../@core/hooks/useSettings";
-import Layout from "../@core/layouts/Layout";
-import {useMediaQuery} from "@mui/material";
-import {Theme} from "@mui/material/styles";
-import menus from "../configs/menus";
+import {useTemplate} from "../@core/hooks/useTemplate";
+import Layout from "src/@core/layouts/Layout";
+import menus from "src/configs/menus";
 
 interface Props {
   children: ReactNode
 }
 
 const UserLayout = ({ children }: Props) => {
-  const {settings, saveSettings} = useSettings()
-
-  const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+  const {template, saveTemplate} = useTemplate()
 
   return (
     <Layout
-      hidden={hidden}
-      settings={settings}
-      saveSettings={saveSettings}
+      template={template}
+      saveTemplate={saveTemplate}
       navMenu={menus()}
     >
       {children}

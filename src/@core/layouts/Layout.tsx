@@ -1,8 +1,9 @@
 import {LayoutProps} from "./types";
-import {styled} from "@mui/material/styles";
-import Navigation from "./components/navigation";
+import {styled, Theme} from "@mui/material/styles";
+import Navigation from "src/@core/layouts/components/navigation";
 import {useState} from "react";
 import Box, {BoxProps} from "@mui/material/Box";
+import { useMediaQuery } from "@mui/material";
 
 const LayoutWrapper = styled('div')({
   height: '100%',
@@ -18,10 +19,12 @@ const MainContentWrapper = styled(Box)<BoxProps>({
 })
 
 const Layout = (props: LayoutProps) => {
-  const {hidden, children, settings, saveSettings} = props;
+  const {children} = props;
 
   const [navHover, setNavHover] = useState<boolean>(false);
   const [navVisible, setNavVisible] = useState<boolean>(false);
+
+  const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
 
   return (
     <LayoutWrapper className="layout-wrapper">

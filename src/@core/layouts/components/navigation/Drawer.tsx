@@ -1,8 +1,7 @@
-import {Settings} from "src/@core/context/types";
-import {ReactNode, useState} from "react";
+import {Template} from "src/@core/context/types";
+import {ReactNode} from "react";
 import MuiSwipeableDrawer, {SwipeableDrawerProps} from "@mui/material/SwipeableDrawer";
 import {styled, useTheme} from "@mui/material/styles";
-import Box from "@mui/material/Box";
 
 const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
   overflowX: 'hidden',
@@ -23,26 +22,27 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
 })
 
 type Props = {
-  hidden: boolean
-  settings: Settings
+  hidden?: boolean
+  template: Template
+  saveTemplate: (template: Template) => void
   children: ReactNode
-  navVisible: boolean
-  setNavVisible: (value: boolean) => void
-  setNavHover: (values: boolean) => void
+  setNavHover?: (values: boolean) => void
+  navVisible?: boolean
+  setNavVisible?: (value: boolean) => void
 }
 
 const Drawer = (props: Props) => {
-  const {hidden, settings, navVisible, children, setNavVisible, setNavHover} = props;
-
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const {hidden = false, template, children, setNavHover, navVisible = true, setNavVisible} = props;
   const theme = useTheme()
+
+  const {navCollapsed, navWidth, navCollapsedWidth} = template
 
 
   // Drawer Props for Mobile & Tablet screens
   const MobileDrawerProps = {
     open: navVisible,
-    onOpen: () => setNavVisible(true),
-    onClose: () => setNavVisible(false),
+    onOpen: () => setNavVisible?.(true),
+    onClose: () => setNavVisible?.(false),
     ModalProps: {
       keepMounted: true // Better open performance on mobile.
     }
@@ -54,19 +54,19 @@ const Drawer = (props: Props) => {
     onOpen: () => null,
     onClose: () => null,
     onMouseEnter: () => {
-      setNavHover(true)
+      setNavHover?.(true)
     },
     onMouseLeave: () => {
-      setNavHover(false)
+      setNavHover?.(false)
     }
   }
 
   return <SwipeableDrawer
     variant={hidden ? 'temporary' : 'permanent'}
     {...(!hidden ? DesktopDrawerProps : MobileDrawerProps)}
-    PaperProps={{sx: { width: collapsed ? 80 : 223 }}}
+    PaperProps={{sx: { width: navCollapsed ? navCollapsedWidth : navWidth }}}
     sx={{
-      width: collapsed ? 80 : 223,
+      width: navCollapsed ? navCollapsedWidth : navWidth,
       '& .MuiDrawer-paper': {
         backgroundColor: theme.palette.background.paper,
         borderRight: 0
