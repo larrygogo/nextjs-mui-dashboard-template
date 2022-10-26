@@ -9,6 +9,7 @@ import Box, {BoxProps} from "@mui/material/Box";
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import {List} from "@mui/material";
+import {hexToRGBA} from "../../../utils/hex-to-rgba";
 
 
 const StyledBoxForShadow = styled(Box)<BoxProps>(({ theme }) => ({
@@ -37,10 +38,6 @@ type NavigationProps = {
 }
 
 const Navigation = (props: NavigationProps) => {
-  const {
-    hidden = false,
-    template,
-  } = props;
   const shadowRef = useRef(null)
 
   const handleInfiniteScroll = (ref: HTMLElement) => {
@@ -76,12 +73,24 @@ const Navigation = (props: NavigationProps) => {
 
   return <Drawer {...props}>
     <NavHeader {...props} />
-    <StyledBoxForShadow className="d-block" />
+    <StyledBoxForShadow
+      ref={shadowRef}
+      sx={(theme) => ({
+        background: `linear-gradient(${theme.palette.background.paper} 5%,${hexToRGBA(
+          theme.palette.background.paper,
+          0.85
+        )} 30%,${hexToRGBA(theme.palette.background.paper, 0.5)} 65%,${hexToRGBA(
+          theme.palette.background.paper,
+          0.3
+        )} 75%,transparent)`
+      })}
+    />
     <Box sx={{ position: 'relative', overflow: 'hidden' }}>
       <PerfectScrollbar
         containerRef={handleInfiniteScroll}
         options={{ wheelPropagation: false }}
         onScrollY={scrollMenu}
+        onScroll={scrollMenu}
       >
         <List className='nav-items'>
           <NavMenuItems {...props} />

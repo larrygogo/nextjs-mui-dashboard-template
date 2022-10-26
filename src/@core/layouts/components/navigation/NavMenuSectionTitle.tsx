@@ -1,21 +1,20 @@
 // ** MUI Imports
 import Divider from '@mui/material/Divider'
-import {styled, useTheme} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import Typography, {TypographyProps} from '@mui/material/Typography'
 import MuiListSubheader, {ListSubheaderProps} from '@mui/material/ListSubheader'
 
 // ** Types
 import {NavSectionTitle} from 'src/@core/layouts/types'
-import {Settings} from 'src/@core/context/types'
+import {Template} from 'src/@core/context/types'
 
 // ** Custom Components Imports
 
 interface Props {
-  navHover: boolean
-  settings: Settings
+  navHover?: boolean
+  setNavHover?: (value: boolean) => void
+  template: Template
   item: NavSectionTitle
-  collapsedNavWidth: number
-  navigationBorderWidth: number
 }
 
 // ** Styled Components
@@ -41,28 +40,31 @@ const TypographyHeaderText = styled(Typography)<TypographyProps>(({theme}) => ({
 
 const NavMenuSectionTitle = (props: Props) => {
   // ** Props
-  const {item, navHover, settings, collapsedNavWidth, navigationBorderWidth} = props
+  const {item, navHover, template} = props
 
-  // ** Hook
-  const theme = useTheme()
-
-  // ** Vars
-
+  const {navCollapsed} = template
 
   return (
-    <ListSubheader
-      className='nav-section-title'
-    >
+    <ListSubheader className='nav-section-title'>
       <Divider
         textAlign='left'
         sx={{
           m: 0,
           lineHeight: 'normal',
+          width: '100%',
+          ...(navCollapsed && !navHover && {
+            width: '100%',
+            textTransform: 'uppercase',
+            '&:before, &:after': {top: 7, transform: 'none'},
+            '& .MuiDivider-wrapper': {px: 2.5, fontSize: '0.75rem', letterSpacing: '0.21px'}
+          })
         }}
       >
-        <TypographyHeaderText noWrap>
-          {item.title}
-        </TypographyHeaderText>
+        {navCollapsed && !navHover ? null : (
+          <TypographyHeaderText noWrap>
+            {item.title}
+          </TypographyHeaderText>
+        )}
       </Divider>
     </ListSubheader>
   )

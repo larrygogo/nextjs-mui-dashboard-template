@@ -2,6 +2,8 @@ import {Template, TemplateContextValue, TemplateProviderProps} from "./types";
 import {createContext, useEffect, useState} from "react";
 
 const initialTemplate: Template = {
+  logo: '/images/logo.svg',
+  minLogo: '/images/logo_m.svg',
   mode: 'dark',
   appBar: 'fixed',
   footer: 'static',
@@ -9,8 +11,9 @@ const initialTemplate: Template = {
   content: 'full',
   navWidth: 233,
   navCollapsedWidth: 70,
-  navCollapsed: false,
+  navCollapsed: true,
   navAllowCollapse: false,
+  navAllowHover: true,
   themeColor: {
     main: '#5A8DEE',
     light: '#5A8DEE',

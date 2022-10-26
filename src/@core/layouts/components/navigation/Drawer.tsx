@@ -35,7 +35,7 @@ const Drawer = (props: Props) => {
   const {hidden = false, template, children, navHover = false, setNavHover, navVisible = true, setNavVisible} = props;
   const theme = useTheme()
 
-  const {navCollapsed, navWidth, navCollapsedWidth} = template
+  const {navCollapsed, navWidth, navAllowHover, navCollapsedWidth} = template
 
 
   // Drawer Props for Mobile & Tablet screens
@@ -54,10 +54,14 @@ const Drawer = (props: Props) => {
     onOpen: () => null,
     onClose: () => null,
     onMouseEnter: () => {
-      setNavHover?.(true)
+      if(navAllowHover) {
+        setNavHover?.(true)
+      }
     },
     onMouseLeave: () => {
-      setNavHover?.(false)
+      if(navAllowHover) {
+        setNavHover?.(false)
+      }
     }
   }
 

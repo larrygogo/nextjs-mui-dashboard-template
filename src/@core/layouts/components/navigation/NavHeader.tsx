@@ -20,19 +20,25 @@ const StyledLink = styled('a')({
 
 type Props = {
   hidden?: boolean
+  navHover?: boolean
   template: Template
   saveTemplate: (values: Template) => void
 }
 
 const NavHeader = (props: Props) => {
-  const {template} = props;
+  const {template, navHover} = props;
 
-  const {logo} = template;
+  const {logo, minLogo, navCollapsed} = template;
+
+  const largeLogo = logo || minLogo;
+
+  const logoSrc = navCollapsed && !navHover ? minLogo : largeLogo;
 
   return <NavHeaderWrapper>
     <Link href="/" passHref>
       <StyledLink>
-        <img src={logo} alt="logo" width="100" height="32"/>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logoSrc} alt="logo" width="100" height="32"/>
       </StyledLink>
     </Link>
   </NavHeaderWrapper>
