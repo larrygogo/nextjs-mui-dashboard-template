@@ -52,6 +52,10 @@ export const TemplateProvider = ({children, initTemplate}: TemplateProviderProps
   const [template, setTemplate] = useState<Template>({...initialTemplate,...initTemplate})
 
   useEffect(() => {
+    setTemplate({...initialTemplate,...initTemplate})
+  }, [initTemplate])
+
+  useEffect(() => {
     const restoredTemplate = restoreTemplate()
 
     if (restoredTemplate) {
