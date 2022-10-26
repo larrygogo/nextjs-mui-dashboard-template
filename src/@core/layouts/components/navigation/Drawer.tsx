@@ -10,8 +10,7 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
     listStyle: 'none'
   },
   '& .MuiListItem-gutters': {
-    paddingLeft: 20,
-    paddingRight: 20
+    transition: 'padding .25s ease-in-out',
   },
   '& .MuiDrawer-paper': {
     left: 'unset',
@@ -26,13 +25,14 @@ type Props = {
   template: Template
   saveTemplate: (template: Template) => void
   children: ReactNode
+  navHover?: boolean
   setNavHover?: (values: boolean) => void
   navVisible?: boolean
   setNavVisible?: (value: boolean) => void
 }
 
 const Drawer = (props: Props) => {
-  const {hidden = false, template, children, setNavHover, navVisible = true, setNavVisible} = props;
+  const {hidden = false, template, children, navHover = false, setNavHover, navVisible = true, setNavVisible} = props;
   const theme = useTheme()
 
   const {navCollapsed, navWidth, navCollapsedWidth} = template
@@ -64,13 +64,17 @@ const Drawer = (props: Props) => {
   return <SwipeableDrawer
     variant={hidden ? 'temporary' : 'permanent'}
     {...(!hidden ? DesktopDrawerProps : MobileDrawerProps)}
-    PaperProps={{sx: { width: navCollapsed ? navCollapsedWidth : navWidth }}}
+    PaperProps={{sx: { width: navCollapsed && !navHover ? navCollapsedWidth : navWidth }}}
     sx={{
-      width: navCollapsed ? navCollapsedWidth : navWidth,
+      width: navCollapsed && !navHover ? navCollapsedWidth : navWidth,
       '& .MuiDrawer-paper': {
         backgroundColor: theme.palette.background.paper,
         borderRight: 0
-      }
+      },
+      '& .MuiListItem-gutters': {
+        paddingLeft: navCollapsed && !navHover ? 2 : 4,
+        paddingRight: navCollapsed && !navHover ? 2 : 4,
+      },
     }}
   >
     {children}

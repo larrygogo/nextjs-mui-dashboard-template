@@ -7,10 +7,13 @@ import NavMenuLink from './NavMenuLink'
 import NavMenuSectionTitle from './NavMenuSectionTitle'
 
 interface Props {
-  navHover?: boolean
   template: Template
   navMenu?: NavMenu
+  navHidden?: boolean
+  navHover?: boolean
+  setNavHover?: (value: boolean) => void
   navVisible?: boolean
+  setNavVisible?: (value: boolean) => void
   saveTemplate: (values: Template) => void
 }
 

@@ -1,5 +1,5 @@
 const Dashboard = () => {
-  return <div>123</div>
+  return <div style={{height: '100vh'}}>123</div>
 }
 
 export default Dashboard

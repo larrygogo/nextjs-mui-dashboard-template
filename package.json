@@ -2,8 +2,14 @@
   "name": "mui-nextjs-dashboard-template",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "email": "351220018@qq,com",
+    "name": "larrygogo",
+    "url": "https://github.com/larrygogo"
+  },
   "scripts": {
     "dev": "PORT=4000 next dev",
+    "dev-win": "set PORT=4000 && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

@@ -2,13 +2,14 @@ import {Template, TemplateContextValue, TemplateProviderProps} from "./types";
 import {createContext, useEffect, useState} from "react";
 
 const initialTemplate: Template = {
-  mode: 'light',
+  mode: 'dark',
   appBar: 'fixed',
   footer: 'static',
   layout: 'vertical',
   content: 'full',
   navWidth: 233,
-  navCollapsed: true,
+  navCollapsedWidth: 70,
+  navCollapsed: false,
   navAllowCollapse: false,
   themeColor: {
     main: '#5A8DEE',

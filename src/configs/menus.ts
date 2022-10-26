@@ -4,67 +4,70 @@ const menus = (): NavMenu => {
   return [
     {
       title: 'Dashboard',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/dashboard',
     },
     {
       title: 'Purchase',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/purchase',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+    },
+    {
+      title: 'Settings',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'home',
       path: '/settings',
     },
   ]
