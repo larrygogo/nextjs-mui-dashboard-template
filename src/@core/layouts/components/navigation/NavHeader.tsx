@@ -15,7 +15,6 @@ const StyledLink = styled('a')({
   textDecoration: 'none',
   minHeight: '64px',
   width: '100%',
-  padding: '16px 20px',
 })
 
 type Props = {
@@ -36,7 +35,12 @@ const NavHeader = (props: Props) => {
 
   return <NavHeaderWrapper>
     <Link href="/" passHref>
-      <StyledLink>
+      <StyledLink
+        sx={{
+          pl: navCollapsed && !navHover ? 2 : 4,
+          pr: navCollapsed && !navHover ? 2 : 4,
+        }}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logoSrc} alt="logo" width="100" height="32"/>
       </StyledLink>

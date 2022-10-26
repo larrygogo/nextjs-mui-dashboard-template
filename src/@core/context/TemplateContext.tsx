@@ -2,7 +2,7 @@ import {Template, TemplateContextValue, TemplateProviderProps} from "./types";
 import {createContext, useEffect, useState} from "react";
 
 const initialTemplate: Template = {
-  logo: '/images/logo.svg',
+  logo: '/images/logo_l.svg',
   minLogo: '/images/logo_m.svg',
   mode: 'dark',
   appBar: 'fixed',
