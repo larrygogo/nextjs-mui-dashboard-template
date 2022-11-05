@@ -5,6 +5,11 @@ import {Template} from "src/@core/context/types";
 
 type Props = {
   template: Template
+  hidden?: boolean
+  navHover?: boolean
+  navVisible?: boolean
+  setNavVisible?: (value: boolean) => void
+  setNavHover?: (value: boolean) => void
 }
 
 const AppBar = styled(MuiAppBar)<AppBarProps>(({ theme }) => ({

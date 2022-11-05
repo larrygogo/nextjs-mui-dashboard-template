@@ -18,7 +18,6 @@ const MainContentWrapper = styled(Box)<BoxProps>({
   minHeight: '100vh',
   flexDirection: 'column',
   overflow: 'auto'
-
 })
 
 const ContentWrapper = styled('main')(({ theme }) => ({
@@ -44,7 +43,7 @@ const Layout = (props: LayoutProps) => {
     <LayoutWrapper className="layout-wrapper">
       <Navigation {...props} hidden={hidden} navHover={navHover} navVisible={navVisible} setNavVisible={setNavVisible} setNavHover={setNavHover} />
       <MainContentWrapper className="layout-content-wrapper">
-        <AppBar {...props} />
+        <AppBar {...props} hidden={hidden}  navHover={navHover} navVisible={navVisible} setNavVisible={setNavVisible} setNavHover={setNavHover} />
         <ContentWrapper>
           {children}
         </ContentWrapper>
