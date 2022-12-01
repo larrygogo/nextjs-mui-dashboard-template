@@ -7,11 +7,13 @@ export type LayoutConfig = {
   // layout?: Layout
   appBar?: AppBar
   footer?: Footer
+  minLogo?: string
   content?: Content
   navWidth?: number
   mode: PaletteMode
   navCollapsed?: boolean
   themeColor: ThemeColor
+  navAllowHover?: boolean
   allowModeSwitch?: boolean
   navAllowCollapse?: boolean
   navCollapsedWidth?: number
