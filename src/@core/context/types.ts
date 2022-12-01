@@ -1,10 +1,10 @@
 import {ReactNode} from "react";
-import {AppBar, Content, Footer, Layout, ThemeColor} from "src/@core/layouts/types";
+import {AppBar, Content, Footer, ThemeColor} from "src/@core/layouts/types";
 import {PaletteMode} from "@mui/material";
 
-export type Template = {
+export type LayoutConfig = {
   logo?: string
-  layout?: Layout
+  // layout?: Layout
   appBar?: AppBar
   footer?: Footer
   content?: Content
@@ -15,15 +15,17 @@ export type Template = {
   allowModeSwitch?: boolean
   navAllowCollapse?: boolean
   navCollapsedWidth?: number
+  menuTextTruncate?: boolean
+  verticalNavToggleType?: 'accordion' | 'collapse'
 }
 
-export type TemplateContextValue = {
-  template: Template
-  saveTemplate: (theme: Template) => void
+export type LayoutContextValue = {
+  config: LayoutConfig
+  saveConfig: (theme: LayoutConfig) => void
 }
 
 export type TemplateProviderProps = {
-  initTemplate?: Template
+  initConfig?: LayoutConfig
   children: ReactNode
 }
 

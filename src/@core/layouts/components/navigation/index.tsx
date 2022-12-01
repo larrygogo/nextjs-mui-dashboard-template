@@ -1,5 +1,5 @@
-import {Template} from "src/@core/context/types";
-import {useRef} from "react";
+import {LayoutConfig} from "src/@core/context/types";
+import {useRef, useState} from "react";
 import Drawer from "./Drawer";
 import NavHeader from "./NavHeader";
 import NavMenuItems from "./NavMenuItems";
@@ -26,22 +26,24 @@ const StyledBoxForShadow = styled(Box)<BoxProps>(({ theme }) => ({
 }))
 
 type NavigationProps = {
-  hidden?: boolean
+  hidden: boolean
   navMenu?: NavMenu
   navHover?: boolean
-  setNavHover?: (values: boolean) => void
+  config: LayoutConfig
   navVisible?: boolean
+  setNavHover?: (values: boolean) => void
   setNavVisible?: (value: boolean) => void
-  template: Template
-  saveTemplate: (template: Template) => void
+  saveConfig: (template: LayoutConfig) => void
 }
 
 const Navigation = (props: NavigationProps) => {
   const {
     hidden = false,
-    template,
+    config,
   } = props;
   const shadowRef = useRef(null)
+  const [groupActive, setGroupActive] = useState<string[]>([])
+  const [currentActiveGroup, setCurrentActiveGroup] = useState<string[]>([])
 
   const handleInfiniteScroll = (ref: HTMLElement) => {
     if (ref) {
@@ -84,7 +86,7 @@ const Navigation = (props: NavigationProps) => {
         onScrollY={scrollMenu}
       >
         <List className='nav-items'>
-          <NavMenuItems {...props} />
+          <NavMenuItems {...props} groupActive={groupActive} setGroupActive={setGroupActive} currentActiveGroup={currentActiveGroup} setCurrentActiveGroup={setCurrentActiveGroup} />
         </List>
       </PerfectScrollbar>
     </Box>

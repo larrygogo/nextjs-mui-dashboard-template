@@ -1,19 +1,49 @@
 // ** Types
-import { NavLink } from 'src/@core/layouts/types'
+import {NavGroup, NavLink} from 'src/@core/layouts/types'
 import { NextRouter } from 'next/router'
 
 /**
  * Check for URL queries as well for matching
  * Current URL & Item Path
- *
- * @param item
- * @param activeItem
  */
 export const handleURLQueries = (router: NextRouter, path: string | undefined): boolean => {
   if (Object.keys(router.query).length && path) {
     const arr = Object.keys(router.query)
 
     return router.asPath.includes(path) && router.asPath.includes(router.query[arr[0]] as string) && path !== '/'
+  }
+
+  return false
+}
+
+/**
+ * Check if the given item has the given url
+ * in one of its children
+ */
+export const hasActiveChild = (item: NavGroup, currentURL: string): boolean => {
+  const { children } = item
+
+  if (!children) {
+    return false
+  }
+
+  for (const child of children) {
+    if ((child as NavGroup).children) {
+      if (hasActiveChild(child, currentURL)) {
+        return true
+      }
+    }
+    const childPath = (child as NavLink).path
+
+    // Check if the child has a link and is active
+    if (
+      child &&
+      childPath &&
+      currentURL &&
+      (childPath === currentURL || (currentURL.includes(childPath) && childPath !== '/'))
+    ) {
+      return true
+    }
   }
 
   return false

@@ -1,18 +1,19 @@
 // ** MUI Imports
 import Divider from '@mui/material/Divider'
-import {styled, useTheme} from '@mui/material/styles'
+import {styled} from '@mui/material/styles'
 import Typography, {TypographyProps} from '@mui/material/Typography'
 import MuiListSubheader, {ListSubheaderProps} from '@mui/material/ListSubheader'
 
 // ** Types
 import {NavSectionTitle} from 'src/@core/layouts/types'
-import {Settings} from 'src/@core/context/types'
+import Translations from "../Translations";
+import {LayoutConfig} from "../../../context/types";
 
 // ** Custom Components Imports
 
 interface Props {
   navHover: boolean
-  settings: Settings
+  config: LayoutConfig
   item: NavSectionTitle
   collapsedNavWidth: number
   navigationBorderWidth: number
@@ -41,13 +42,7 @@ const TypographyHeaderText = styled(Typography)<TypographyProps>(({theme}) => ({
 
 const NavMenuSectionTitle = (props: Props) => {
   // ** Props
-  const {item, navHover, settings, collapsedNavWidth, navigationBorderWidth} = props
-
-  // ** Hook
-  const theme = useTheme()
-
-  // ** Vars
-
+  const {item} = props
 
   return (
     <ListSubheader
@@ -61,7 +56,7 @@ const NavMenuSectionTitle = (props: Props) => {
         }}
       >
         <TypographyHeaderText noWrap>
-          {item.title}
+          <Translations text={item.title}/>
         </TypographyHeaderText>
       </Divider>
     </ListSubheader>

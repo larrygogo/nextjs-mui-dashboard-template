@@ -4,8 +4,14 @@ const menus = (): NavMenu => {
   return [
     {
       title: 'Dashboard',
-      icon: 'HomeIcon',
-      path: '/dashboard',
+      icon: 'Home',
+      children: [
+        {
+          title: 'Purchase',
+          icon: 'HomeIcon',
+          path: '/purchase',
+        },
+        ]
     },
     {
       title: 'Purchase',

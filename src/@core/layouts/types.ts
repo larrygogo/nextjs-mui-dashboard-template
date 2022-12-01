@@ -1,5 +1,6 @@
-import {ReactNode} from "react";
-import {Template} from "src/@core/context/types";
+import {ReactElement, ReactNode} from "react";
+import {LayoutConfig} from "src/@core/context/types";
+import {AclType} from "../context/AbilityContext";
 
 export type Layout = 'vertical' | 'horizontal' | 'blank' | 'blankWithAppBar'
 
@@ -17,30 +18,58 @@ export type ThemeColor = {
 
 export type NavLink = {
   icon?: any
-  path: string
+  path?: string
   title: string
+  action?: string
+  subject?: string
   disabled?: boolean
+  badgeContent?: string
+  externalLink?: boolean
+  openInNewTab?: boolean
+  badgeColor?: 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info'
+}
+
+export type NavGroup = {
+  icon?: any
+  title: string
+  action?: string
+  subject?: string
+  badgeContent?: string
+  children?: (NavGroup | NavLink)[]
+  badgeColor?: 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info'
 }
 
 
 export type NavSectionTitle = {
   title: string
+  action?: string
+  subject?: string
 }
 
-export type NavMenu = (NavLink | NavSectionTitle)[]
+export type NavMenu = (NavGroup | NavLink | NavSectionTitle)[]
 
 export type LayoutProps = {
-  template: Template
-  saveTemplate: (values: Template) => void
+  menu?: NavMenu
+  hidden: boolean
+  config: LayoutConfig
   children: ReactNode
-  menuBrand?: ((props?: any) => ReactNode) | ReactNode
-  navMenu?: NavMenu
-  appBarContent?: ((props?: any) => ReactNode) | ReactNode
-  footerContent?: ((props?: any) => ReactNode) | ReactNode
-  navMenuContent?: ((props?: any) => ReactNode) | ReactNode
-  navMenuBranding?: ((props?: any) => ReactNode) | ReactNode
-  afterNavMenuContent?: ((props?: any) => ReactNode) | ReactNode
-  beforeNavMenuContent?: ((props?: any) => ReactNode) | ReactNode
+  saveConfig: (values: LayoutConfig) => void
+
+  appBarContent?: (props?: any) => ReactNode
+  footerContent?: (props?: any) => ReactNode
+  navMenuContent?: (props?: any) => ReactNode
+  navMenuBranding?: (props?: any) => ReactNode
+  afterNavMenuContent?: (props?: any) => ReactNode
+  beforeNavMenuContent?: (props?: any) => ReactNode
+}
+
+
+export type LayoutPageProps = {
+  acl?: AclType
+  authGuard?: boolean
+  guestGuard?: boolean
+  setConfig?: () => void
+  getLayout?: (page: ReactElement) => ReactNode
 }
 
 export type BlankLayoutProps = {

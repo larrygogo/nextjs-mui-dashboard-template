@@ -1,26 +1,25 @@
-import {Fragment, ReactElement, ReactNode} from 'react'
+import {Fragment, ReactNode} from 'react'
 import Head from 'next/head'
 import type {NextPage} from 'next'
 import type {AppProps} from 'next/app'
-import {TemplateConsumer, TemplateProvider} from 'src/@core/context/TemplateContext'
+import {TemplateConsumer, LayoutProvider} from 'src/@core/context/LayoutContext'
 import {createEmotionCache} from 'src/@core/utils/create-emotion-cache'
-import 'styles/globals.css'
 import {CacheProvider, EmotionCache} from "@emotion/react";
 import ThemeComponent from "src/@core/theme/ThemeComponent";
+import AclGuard from "src/@core/components/auth/AclGuard";
 import UserLayout from "src/layouts/UserLayout";
 import GuestGuard from 'src/@core/components/auth/GuestGuard'
 import Spinner from 'src/@core/components/spinner'
 import AuthGuard from 'src/@core/components/auth/AuthGuard'
-import {AuthProvider} from "../@core/context/AuthContext";
-import WindowWrapper from "../@core/components/window-wrapper";
+import {AuthProvider} from "src/@core/context/AuthContext";
+import WindowWrapper from "src/@core/components/window-wrapper";
 import {Router} from "next/router";
 import NProgress from 'nprogress'
+import {LayoutPageProps} from "src/@core/layouts/types";
+import {defaultAbility} from "src/configs/acl";
+import 'styles/globals.css'
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
-  authGuard?: boolean
-  guestGuard?: boolean
-}
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & LayoutPageProps
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -49,7 +48,6 @@ Router.events.on('routeChangeComplete', () => {
 })
 
 const Guard = ({children, authGuard, guestGuard}: GuardProps) => {
-  console.log(authGuard, guestGuard)
   if (guestGuard) {
     return <GuestGuard fallback={<Spinner/>}>{children}</GuestGuard>
   } else if (!guestGuard && !authGuard) {
@@ -68,31 +66,35 @@ const App = (props: ExtendedAppProps) => {
   const authGuard = Component.authGuard ?? true
   const guestGuard = Component.guestGuard ?? false
 
+  const aclAbilities = Component.acl ?? defaultAbility
+
   return (
     <CacheProvider value={emotionCache}>
       <AuthProvider>
-        <TemplateProvider>
-          <TemplateConsumer>
-            {({template}) => {
-              return (
-                <Fragment>
-                  <Head>
-                    <title>Hello Dashboard</title>
-                    <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template'/>
-                    <meta name='viewport' content='initial-scale=1, width=device-width'/>
-                  </Head>
-                  <ThemeComponent template={template}>
-                    <WindowWrapper>
-                      <Guard authGuard={authGuard} guestGuard={guestGuard}>
-                        {getLayout(<Component {...pageProps} />)}
-                      </Guard>
-                    </WindowWrapper>
-                  </ThemeComponent>
-                </Fragment>
-              )
-            }}
-          </TemplateConsumer>
-        </TemplateProvider>
+          <LayoutProvider>
+            <TemplateConsumer>
+              {({config}) => {
+                return (
+                  <Fragment>
+                    <Head>
+                      <title>Hello Dashboard</title>
+                      <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template'/>
+                      <meta name='viewport' content='initial-scale=1, width=device-width'/>
+                    </Head>
+                    <ThemeComponent config={config}>
+                      <WindowWrapper>
+                        <Guard authGuard={authGuard} guestGuard={guestGuard}>
+                          <AclGuard guestGuard={guestGuard} aclAbilities={aclAbilities}>
+                            {getLayout(<Component {...pageProps} />)}
+                          </AclGuard>
+                        </Guard>
+                      </WindowWrapper>
+                    </ThemeComponent>
+                  </Fragment>
+                )
+              }}
+            </TemplateConsumer>
+          </LayoutProvider>
       </AuthProvider>
     </CacheProvider>
   )

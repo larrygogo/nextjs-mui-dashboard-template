@@ -6,7 +6,7 @@ import { ThemeOptions } from '@mui/material'
 import UserThemeOptions from 'src/theme/ThemeOptions'
 
 // ** Type Import
-import { Template } from 'src/@core/context/types'
+import { LayoutConfig } from 'src/@core/context/types'
 
 // ** Theme Override Imports
 import palette from './palette'
@@ -14,7 +14,7 @@ import spacing from './spacing'
 import shadows from './shadows'
 import breakpoints from './breakpoints'
 
-const themeOptions = (template: Template): ThemeOptions => {
+const themeOptions = (template: LayoutConfig): ThemeOptions => {
   // ** Vars
   const { mode = 'light', themeColor } = template
 

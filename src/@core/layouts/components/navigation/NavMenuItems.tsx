@@ -1,29 +1,37 @@
 // ** Types Import
-import { Template } from 'src/@core/context/types'
-import { NavLink, NavSectionTitle, NavMenu } from 'src/@core/layouts/types'
+import { LayoutConfig } from 'src/@core/context/types'
+import { NavGroup, NavLink, NavSectionTitle, NavMenu } from 'src/@core/layouts/types'
 
 // ** Custom Menu Components
 import NavMenuLink from './NavMenuLink'
 import NavMenuSectionTitle from './NavMenuSectionTitle'
+import NavMenuGroup from "./NavMenuGroup";
 
 interface Props {
+  parent?: NavGroup
+  config: LayoutConfig
   navHover?: boolean
-  template: Template
-  navMenu?: NavMenu
+  menu?: NavMenu
   navVisible?: boolean
-  saveTemplate: (values: Template) => void
+  isSubToSub?: NavGroup
+  saveConfig: (values: LayoutConfig) => void
+  groupActive: string[]
+  setGroupActive: (value: string[]) => void
+  currentActiveGroup: string[]
+  setCurrentActiveGroup: (item: string[]) => void
 }
 
-const resolveNavItemComponent = (item: NavLink | NavSectionTitle) => {
+const resolveNavItemComponent = (item: NavGroup | NavLink | NavSectionTitle) => {
   if ((item as NavLink).path) return NavMenuLink
+  if ((item as NavGroup).children) return NavMenuGroup
   return NavMenuSectionTitle
 }
 
 const NavMenuItems = (props: Props) => {
   // ** Props
-  const { navMenu } = props
+  const { menu } = props
 
-  const RenderMenuItems = navMenu?.map((item: NavLink | NavSectionTitle, index: number) => {
+  const RenderMenuItems = menu?.map((item: NavGroup | NavLink | NavSectionTitle, index: number) => {
     const TagName: any = resolveNavItemComponent(item)
 
     return <TagName {...props} key={index} item={item} />

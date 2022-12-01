@@ -18,7 +18,7 @@ const AuthGuard = (props: AuthGuardProps) => {
       return
     }
 
-    if (!auth.userInfo && !window.localStorage.getItem(auth.options.storageKey)) {
+    if (!auth.userInfo && !auth.loading) {
       if (router.asPath !== '/') {
         router.replace({
           pathname: '/login',
@@ -29,9 +29,8 @@ const AuthGuard = (props: AuthGuardProps) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.route])
+  }, [router, auth])
 
-  console.log(auth.loading, auth.userInfo)
   if (auth.loading || auth.userInfo === null) {
     return fallback
   }

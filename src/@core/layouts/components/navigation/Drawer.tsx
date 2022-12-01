@@ -1,4 +1,4 @@
-import {Template} from "src/@core/context/types";
+import {LayoutConfig} from "src/@core/context/types";
 import {ReactNode} from "react";
 import MuiSwipeableDrawer, {SwipeableDrawerProps} from "@mui/material/SwipeableDrawer";
 import {styled, useTheme} from "@mui/material/styles";
@@ -22,9 +22,9 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
 })
 
 type Props = {
-  hidden?: boolean
-  template: Template
-  saveTemplate: (template: Template) => void
+  hidden: boolean
+  config: LayoutConfig
+  saveConfig: (template: LayoutConfig) => void
   children: ReactNode
   setNavHover?: (values: boolean) => void
   navVisible?: boolean
@@ -32,10 +32,10 @@ type Props = {
 }
 
 const Drawer = (props: Props) => {
-  const {hidden = false, template, children, setNavHover, navVisible = true, setNavVisible} = props;
+  const {hidden = false, config, children, setNavHover, navVisible = true, setNavVisible} = props;
   const theme = useTheme()
 
-  const {navCollapsed, navWidth, navCollapsedWidth} = template
+  const {navCollapsed, navWidth, navCollapsedWidth} = config
 
 
   // Drawer Props for Mobile & Tablet screens
@@ -62,8 +62,9 @@ const Drawer = (props: Props) => {
   }
 
   return <SwipeableDrawer
+    className='layout-nav'
     variant={hidden ? 'temporary' : 'permanent'}
-    {...(!hidden ? DesktopDrawerProps : MobileDrawerProps)}
+    {...(!hidden ? {...DesktopDrawerProps} : {...MobileDrawerProps})}
     PaperProps={{sx: { width: navCollapsed ? navCollapsedWidth : navWidth }}}
     sx={{
       width: navCollapsed ? navCollapsedWidth : navWidth,
