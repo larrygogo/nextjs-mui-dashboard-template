@@ -20,7 +20,6 @@ const DataGrid = (theme: Theme) => {
           maxHeight: '54px !important',
           minHeight: '54px !important',
           lineHeight: '24px !important',
-          backgroundColor: theme.palette.customColors.tableHeaderBg
         },
         columnHeader: {
           height: '54px',

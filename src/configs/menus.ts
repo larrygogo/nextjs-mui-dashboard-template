@@ -4,73 +4,77 @@ const menus = (): NavMenu => {
   return [
     {
       title: 'Dashboard',
-      icon: 'Home',
+      icon: 'HomeOutline',
       children: [
         {
-          title: 'Purchase',
-          icon: 'HomeIcon',
-          path: '/purchase',
+          title: 'Dashboard',
+          icon: 'HomeOutline',
+          path: '/dashboard',
+          action: "access",
+          subject: "dashboard"
         },
         ]
     },
     {
       title: 'Purchase',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/purchase',
+      action: "access",
+      subject: "purchase"
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
     {
       title: 'Settings',
-      icon: 'HomeIcon',
+      icon: 'HomeOutline',
       path: '/settings',
     },
   ]

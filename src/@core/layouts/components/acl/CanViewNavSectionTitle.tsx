@@ -1,11 +1,12 @@
 // ** React Imports
-import { ReactNode, useContext } from 'react'
+import {ReactNode} from 'react'
 
 // ** Component Imports
-import {AbilityContext, Action} from 'src/@core/context/AbilityContext'
+import {Action} from 'src/@core/context/AbilityContext'
 
 // ** Types
-import { NavSectionTitle } from 'src/@core/layouts/types'
+import {NavSectionTitle} from 'src/@core/layouts/types'
+import {useAbility} from "src/@core/hooks/useAbility";
 
 interface Props {
   children: ReactNode
@@ -14,10 +15,10 @@ interface Props {
 
 const CanViewNavSectionTitle = (props: Props) => {
   // ** Props
-  const { children, navTitle } = props
+  const {children, navTitle} = props
 
   // ** Hook
-  const ability = useContext(AbilityContext)
+  const ability = useAbility()
 
   return ability && ability.can(navTitle?.action as Action, navTitle?.subject as string) ? <>{children}</> : null
 }

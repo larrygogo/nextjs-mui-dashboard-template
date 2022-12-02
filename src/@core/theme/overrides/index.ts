@@ -2,7 +2,7 @@
 import { Theme } from '@mui/material/styles'
 
 // ** Type Import
-import { Settings } from 'src/@core/context/types'
+import { LayoutConfig } from 'src/@core/context/types'
 
 // ** Overrides Imports
 import MuiCard from './card'
@@ -35,8 +35,8 @@ import MuiAutocomplete from './autocomplete'
 import MuiToggleButton from './toggleButton'
 import MuiDateTimePicker from './dateTimePicker'
 
-const Overrides = (theme: Theme, settings: Settings) => {
-  const {  } = settings
+const Overrides = (theme: Theme, config: LayoutConfig) => {
+  const {  } = config
 
   const button = MuiButton(theme)
   const chip = MuiChip(theme)

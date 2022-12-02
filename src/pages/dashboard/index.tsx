@@ -4,4 +4,9 @@ const Dashboard = () => {
   </div>
 }
 
+Dashboard.acl = {
+  action: 'access',
+  subject: 'dashboard',
+}
+
 export default Dashboard

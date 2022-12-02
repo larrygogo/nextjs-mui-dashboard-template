@@ -1,6 +1,6 @@
 import {ReactElement, ReactNode} from "react";
 import {LayoutConfig} from "src/@core/context/types";
-import {AclType} from "../context/AbilityContext";
+import {AclType, Action} from "../context/AbilityContext";
 
 export type Layout = 'vertical' | 'horizontal' | 'blank' | 'blankWithAppBar'
 
@@ -20,7 +20,7 @@ export type NavLink = {
   icon?: any
   path?: string
   title: string
-  action?: string
+  action?: Action
   subject?: string
   disabled?: boolean
   badgeContent?: string
@@ -32,7 +32,7 @@ export type NavLink = {
 export type NavGroup = {
   icon?: any
   title: string
-  action?: string
+  action?: Action
   subject?: string
   badgeContent?: string
   children?: (NavGroup | NavLink)[]
@@ -42,7 +42,7 @@ export type NavGroup = {
 
 export type NavSectionTitle = {
   title: string
-  action?: string
+  action?: Action
   subject?: string
 }
 

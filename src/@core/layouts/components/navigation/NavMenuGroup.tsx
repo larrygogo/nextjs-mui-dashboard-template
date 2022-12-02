@@ -26,13 +26,15 @@ import {hasActiveChild, removeChildren} from 'src/@core/layouts/utils'
 
 // ** Types
 import {NavGroup} from 'src/@core/layouts/types'
+import * as Icons from 'mdi-material-ui'
 
 // ** Custom Components Imports
 import NavMenuItems from './NavMenuItems'
 import Translations from 'src/@core/layouts/components/Translations'
 import CanViewNavGroup from 'src/@core/layouts/components/acl/CanViewNavGroup'
 import {LayoutConfig} from "../../../context/types";
-import {Icon, ListItemButtonProps} from "@mui/material";
+import {ListItemButtonProps} from "@mui/material";
+import UserIcon from "../UserIcon";
 
 interface Props {
   item: NavGroup
@@ -55,22 +57,27 @@ const MenuNavGroup = styled(ListItemButton)<
 >(({ theme }) => ({
   width: '100%',
   borderRadius: 4,
-  color: theme.palette.text.secondary,
   padding: '0 14px',
   pr: 0,
   transition: 'padding-left .25s ease-in-out, background-color .25s ease-in-out, color .25s ease-in-out',
+  '& .MuiTypography-root': {
+    color: theme.palette.text.secondary,
+  },
   '&.active, &:hover': {
     color: theme.palette.customColors.main,
   },
   '&.hover': {
     backgroundColor: theme.palette.action.hover,
+    '& .MuiTypography-root': {
+      color: theme.palette.text.primary,
+    }
   },
   '&.active': {
     backgroundColor: theme.palette.action.active,
-    '& .MuiTypography-root, & .MuiListItemIcon-root': {
-      color: `${theme.palette.common.white} !important`
+    '& .MuiTypography-root': {
+      color: theme.palette.text.primary,
     }
-  }
+  },
 }))
 
 const MenuItemTextWrapper = styled(Box)<BoxProps>(() => ({
@@ -114,6 +121,9 @@ const NavMenuGroup = (props: Props) => {
   const router = useRouter()
   const currentURL = router.pathname
   const {navCollapsed, menuTextTruncate, verticalNavToggleType} = config
+
+  // @ts-ignore
+  const IconTag = parent && !item.icon ? Icons['CircleOutline'] : Icons[item.icon]
 
   // ** Accordion menu group open toggle
   const toggleActiveGroup = (item: NavGroup, parent: NavGroup | undefined) => {
@@ -234,6 +244,7 @@ const NavMenuGroup = (props: Props) => {
         <ListItem
           // className='nav-group'
           onClick={handleGroupClick}
+          disablePadding
           sx={{flexDirection: 'column', pr: isSubToSub ? 10 : 0,}}
         >
           <MenuNavGroup
@@ -258,7 +269,17 @@ const NavMenuGroup = (props: Props) => {
                   mr: navCollapsed && !navHover ? 0 : 2.5,
                 }}
               >
-                <Icon>{item.icon}</Icon>
+                <UserIcon
+                  icon={IconTag}
+                  componentType='menu'
+                  iconProps={{
+                    sx: {
+                      fontSize: '0.875rem',
+                      ...(!parent ? {fontSize: '1.5rem'} : {}),
+                      ...(parent && item.icon ? {fontSize: '0.875rem'} : {})
+                    }
+                  }}
+                />
               </ListItemIcon>
             )}
             <MenuItemTextWrapper sx={{...menuGroupCollapsedStyles, ...(isSubToSub ? {ml: 9} : {})}}>

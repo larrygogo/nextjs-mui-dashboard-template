@@ -59,7 +59,6 @@ const Table = (theme: Theme) => {
           }
         },
         stickyHeader: {
-          backgroundColor: theme.palette.customColors.tableHeaderBg
         }
       }
     }

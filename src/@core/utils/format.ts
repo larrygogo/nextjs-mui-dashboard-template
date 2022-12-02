@@ -4,8 +4,6 @@ import { DateFormatting, PaymentTypes } from './types'
  ** Format and return date in Humanize format
  ** Intl docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format
  ** Intl Constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat
- * @param {String} value date to format
- * @param {Object} formatting Intl object to format with
  */
 
 // ** Checks if the passed date is today
@@ -25,6 +23,7 @@ export const formatDate = (
 ) => {
   if (!value) return value
 
+  // @ts-ignore
   return new Intl.DateTimeFormat('en-US', formatting).format(new Date(value))
 }
 
@@ -37,6 +36,7 @@ export const formatDateToMonthShort = (value: Date | string, toTimeForCurrentDay
     formatting = { hour: 'numeric', minute: 'numeric' }
   }
 
+  // @ts-ignore
   return new Intl.DateTimeFormat('en-US', formatting).format(new Date(value))
 }
 

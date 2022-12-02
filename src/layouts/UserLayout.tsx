@@ -12,14 +12,14 @@ interface Props {
 const UserLayout = ({ children }: Props) => {
   const {config, saveConfig} = useLayout()
 
-  const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+  // const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
 
   return (
     <Layout
-      config={config}
-      hidden={hidden}
-      saveConfig={saveConfig}
       menu={menus()}
+      config={config}
+      hidden={false}
+      saveConfig={saveConfig}
     >
       {children}
     </Layout>

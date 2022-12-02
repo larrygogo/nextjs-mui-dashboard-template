@@ -37,10 +37,7 @@ type NavigationProps = {
 }
 
 const Navigation = (props: NavigationProps) => {
-  const {
-    hidden = false,
-    config,
-  } = props;
+  const { } = props;
   const shadowRef = useRef(null)
   const [groupActive, setGroupActive] = useState<string[]>([])
   const [currentActiveGroup, setCurrentActiveGroup] = useState<string[]>([])
@@ -85,7 +82,7 @@ const Navigation = (props: NavigationProps) => {
         options={{ wheelPropagation: false }}
         onScrollY={scrollMenu}
       >
-        <List className='nav-items'>
+        <List className='nav-items' disablePadding>
           <NavMenuItems {...props} groupActive={groupActive} setGroupActive={setGroupActive} currentActiveGroup={currentActiveGroup} setCurrentActiveGroup={setCurrentActiveGroup} />
         </List>
       </PerfectScrollbar>

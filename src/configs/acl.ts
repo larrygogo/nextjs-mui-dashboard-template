@@ -16,7 +16,8 @@ const defineAbility = (ability: AppAbility, user: any) => {
   if (user.role === 'admin') {
     can('manage', 'all');
   } else {
-    can('access', 'all');
+    can('access', 'dashboard');
+    can('access', 'purchase');
   }
   ability.update(rules);
 }

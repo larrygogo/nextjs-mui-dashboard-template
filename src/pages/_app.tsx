@@ -76,13 +76,13 @@ const App = (props: ExtendedAppProps) => {
               {({config}) => {
                 return (
                   <Fragment>
-                    <Head>
-                      <title>Hello Dashboard</title>
-                      <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template'/>
-                      <meta name='viewport' content='initial-scale=1, width=device-width'/>
-                    </Head>
                     <ThemeComponent config={config}>
                       <WindowWrapper>
+                        <Head>
+                          <title>Hello Dashboard</title>
+                          <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template'/>
+                          <meta name='viewport' content='initial-scale=1, width=device-width'/>
+                        </Head>
                         <Guard authGuard={authGuard} guestGuard={guestGuard}>
                           <AclGuard guestGuard={guestGuard} aclAbilities={aclAbilities}>
                             {getLayout(<Component {...pageProps} />)}

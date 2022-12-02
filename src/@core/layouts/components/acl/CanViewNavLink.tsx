@@ -1,11 +1,12 @@
 // ** React Imports
-import { ReactNode, useContext } from 'react'
+import {ReactNode} from 'react'
 
 // ** Component Imports
-import {AbilityContext, Action} from 'src/@core/context/AbilityContext'
+import {Action} from 'src/@core/context/AbilityContext'
 
 // ** Types
-import { NavLink } from 'src/@core/layouts/types'
+import {NavLink} from 'src/@core/layouts/types'
+import {useAbility} from "src/@core/hooks/useAbility";
 
 interface Props {
   navLink?: NavLink
@@ -14,11 +15,10 @@ interface Props {
 
 const CanViewNavLink = (props: Props) => {
   // ** Props
-  const { children, navLink } = props
+  const {children, navLink} = props
 
   // ** Hook
-  const ability = useContext(AbilityContext)
-
+  const ability = useAbility()
   return ability && ability.can(navLink?.action as Action, navLink?.subject as string) ? <>{children}</> : null
 }
 

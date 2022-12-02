@@ -2,6 +2,7 @@ import {styled} from "@mui/material/styles";
 import Box, {BoxProps} from "@mui/material/Box";
 import Link from "next/link";
 import {LayoutConfig} from "src/@core/context/types";
+import Image from "next/image";
 
 const NavHeaderWrapper = styled(Box)<BoxProps>(() => ({
   display: 'flex',
@@ -12,6 +13,7 @@ const NavHeaderWrapper = styled(Box)<BoxProps>(() => ({
 const StyledLink = styled('a')({
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'center',
   textDecoration: 'none',
   minHeight: '64px',
   width: '100%',
@@ -32,7 +34,7 @@ const NavHeader = (props: Props) => {
   return <NavHeaderWrapper>
     <Link href="/" passHref>
       <StyledLink>
-        <img src={logo} alt="logo" width="100" height="32"/>
+        {logo && <Image src={logo} alt="logo" width="100" height="32"/> }
       </StyledLink>
     </Link>
   </NavHeaderWrapper>
