@@ -24,8 +24,9 @@ import Translations from "../../@core/layouts/components/Translations";
 
 const Card = styled(MuiCard)<CardProps>(({theme}) => ({
   [theme.breakpoints.up('sm')]: {
-    width: '28rem',
-  }
+    width: 300,
+  },
+  boxShadow: theme.shadows[6],
 }))
 
 const schema = yup.object().shape({
@@ -67,7 +68,7 @@ const LoginPage: NextPageWithLayout = () => {
       <Card>
         <CardContent>
           <Box>
-            <Typography component="h3" variant="h4" sx={{mb: 4}}>Login</Typography>
+            <Typography variant="h5" sx={{mb: 4}}>Login</Typography>
             <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
               <FormControl fullWidth sx={{mb: 4}}>
                 <Controller
@@ -78,6 +79,7 @@ const LoginPage: NextPageWithLayout = () => {
                       id="username"
                       label="Username"
                       variant="outlined"
+                      size="small"
                       value={value}
                       onBlur={onBlur}
                       onChange={onChange}
@@ -88,7 +90,7 @@ const LoginPage: NextPageWithLayout = () => {
                 {errors.username && <FormHelperText error>{errors.username.message}</FormHelperText>}
               </FormControl>
               <FormControl fullWidth sx={{mb: 4}}>
-                <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
+                <InputLabel size="small">Password</InputLabel>
                 <Controller
                   name="password"
                   control={control}
@@ -98,6 +100,7 @@ const LoginPage: NextPageWithLayout = () => {
                         id='auth-login-password'
                         type={showPassword ? 'text' : 'password'}
                         label='Password'
+                        size="small"
                         value={value}
                         onBlur={onBlur}
                         onChange={onChange}
@@ -110,7 +113,7 @@ const LoginPage: NextPageWithLayout = () => {
                               aria-label='toggle password visibility'
                             >
                               <Icon sx={{
-                                color: showPassword ? 'primary.main' : 'primary.light'
+                                color: showPassword ? 'primary.main' : 'text.secondary'
                               }}>
                                 remove_red_eye
                               </Icon>
@@ -123,13 +126,12 @@ const LoginPage: NextPageWithLayout = () => {
                 />
                 {errors.password && <FormHelperText error>{errors.password.message}</FormHelperText>}
               </FormControl>
-              <Button fullWidth size='large' type='submit' variant='contained' sx={{mb: 7}}>
+              <Button fullWidth size='medium' type='submit' variant='contained' sx={{mb: 4}}>
                 <Translations text="login" />
               </Button>
             </form>
           </Box>
         </CardContent>
-
       </Card>
     </Box>
   );
