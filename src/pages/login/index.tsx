@@ -20,6 +20,7 @@ import * as yup from 'yup'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {useAuth} from "../../@core/hooks/useAuth";
+import Translations from "../../@core/layouts/components/Translations";
 
 const Card = styled(MuiCard)<CardProps>(({theme}) => ({
   [theme.breakpoints.up('sm')]: {
@@ -51,7 +52,7 @@ const LoginPage: NextPageWithLayout = () => {
   const onSubmit = async (data: any) => {
     const {username, password} = data
     console.log(username, password)
-    await auth.login({username, password}).catch(errors => {
+    await auth.login({username, password}).catch(() => {
       setError('username', {type: 'manual', message: 'Invalid username or password'})
     })
   }
@@ -123,7 +124,7 @@ const LoginPage: NextPageWithLayout = () => {
                 {errors.password && <FormHelperText error>{errors.password.message}</FormHelperText>}
               </FormControl>
               <Button fullWidth size='large' type='submit' variant='contained' sx={{mb: 7}}>
-                Login
+                <Translations text="login" />
               </Button>
             </form>
           </Box>
