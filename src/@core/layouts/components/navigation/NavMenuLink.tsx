@@ -23,13 +23,11 @@ const MenuNavLink = styled(ListItemButton)<
   padding: '0 14px',
   pr: 0,
   transition: 'padding-left .25s ease-in-out, background-color .25s ease-in-out, color .25s ease-in-out',
-  '&.active, &:hover': {
-    color: theme.palette.customColors.main,
-  },
   '&.hover': {
     backgroundColor: theme.palette.action.hover,
   },
   '&.active': {
+    color: theme.palette.customColors.main,
     backgroundColor: hexToRGBA(theme.palette.customColors.main, 0.1),
     '& .MuiTypography-root, & .MuiListItemIcon-root': {
       color: `${theme.palette.common.white} !important`
@@ -60,6 +58,8 @@ const NavMenuLink = (props: Props) => {
   const {navCollapsed} = config
   const router = useRouter()
 
+  const enableGutters = !parent
+
   // @ts-ignore
   const IconTag: ReactNode = parent && !item.icon ? CircleOutline : Icons[item.icon]
 
@@ -70,7 +70,7 @@ const NavMenuLink = (props: Props) => {
     <CanViewNavLink navLink={item}>
       <ListItem
         disablePadding
-        disableGutters={parent}
+        disableGutters={!enableGutters}
         sx={
           parent ?
             {mt: 2} :
@@ -100,8 +100,8 @@ const NavMenuLink = (props: Props) => {
                   sx: (theme) => ({
                     fontSize: '0.875rem',
                     color: isNavLinkActive() ? theme.palette.primary.main : theme.palette.text.secondary,
-                    ...(!parent ? {fontSize: '1.5rem'} : {}),
-                    ...(parent && item.icon ? {fontSize: '0.875rem'} : {})
+                    ...(!parent ? {fontSize: '1rem'} : {}),
+                    ...(parent && item.icon ? {fontSize: '1rem'} : {})
                   })
                 }}
               />

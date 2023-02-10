@@ -45,8 +45,9 @@ export type AuthContextValue<T = any> = {
   setUserInfo: (value: T) => void
   options: AuthContextOptions
   saveOptions: (options: AuthContextOptions) => void
-  login: (data: any) => Promise<void>
-  logout: () => Promise<void>
+  login: (data: any) => Promise<any>
+  logout: () => Promise<any>
+  register: (data: any) => Promise<any>
 }
 
 export type AuthProviderProps = {

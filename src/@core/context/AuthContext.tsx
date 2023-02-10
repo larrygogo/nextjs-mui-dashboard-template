@@ -19,6 +19,7 @@ const defaultContextValue: AuthContextValue = {
   setUserInfo: () => null,
   login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
+  register: () => Promise.resolve()
 }
 
 const AuthContext = createContext<AuthContextValue>(defaultContextValue)
@@ -75,6 +76,10 @@ const AuthProvider = function<T = any> ({children, options: initOptions}: AuthPr
       })
   }
 
+  const handleRegister = (data: any) => {
+    return axios.post(options.registerUrl, data)
+  }
+
   return (
     <AuthContext.Provider value={{
       loading,
@@ -84,6 +89,7 @@ const AuthProvider = function<T = any> ({children, options: initOptions}: AuthPr
       setUserInfo,
       login: handleLogin,
       logout: handleLogout,
+      register: handleRegister
     }}>
       {children}
     </AuthContext.Provider>

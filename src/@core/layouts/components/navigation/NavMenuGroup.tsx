@@ -8,7 +8,6 @@ import {useRouter} from 'next/router'
 import Chip from '@mui/material/Chip'
 import Collapse from '@mui/material/Collapse'
 import ListItem from '@mui/material/ListItem'
-import Typography from '@mui/material/Typography'
 import Box, {BoxProps} from '@mui/material/Box'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import {styled, useTheme} from '@mui/material/styles'
@@ -54,17 +53,18 @@ interface Props {
 
 const MenuNavGroup = styled(ListItemButton)<
   ListItemButtonProps & { component?: ElementType; target?: '_blank' | undefined }
->(({ theme }) => ({
+>(({theme}) => ({
   width: '100%',
   borderRadius: 4,
   padding: '0 14px',
   pr: 0,
   transition: 'padding-left .25s ease-in-out, background-color .25s ease-in-out, color .25s ease-in-out',
-  '& .MuiTypography-root': {
+  color: theme.palette.text.secondary,
+  '&.Mui-selected': {
     color: theme.palette.text.secondary,
   },
-  '&.active, &:hover': {
-    color: theme.palette.customColors.main,
+  '& .MuiTypography-root': {
+    color: theme.palette.text.secondary,
   },
   '&.hover': {
     backgroundColor: theme.palette.action.hover,
@@ -73,6 +73,7 @@ const MenuNavGroup = styled(ListItemButton)<
     }
   },
   '&.active': {
+    color: theme.palette.customColors.main,
     backgroundColor: theme.palette.action.active,
     '& .MuiTypography-root': {
       color: theme.palette.text.primary,
@@ -226,16 +227,16 @@ const NavMenuGroup = (props: Props) => {
   }
 
   const conditionalBgColor = () => {
-    return {
-      color: theme.palette.text.secondary,
-      '&.Mui-selected': {
-        color: theme.palette.customColors.main,
-        backgroundColor: theme.palette.action.active,
-        '&:hover': {
-          backgroundColor: theme.palette.action.hover
-        }
-      }
-    }
+    // return {
+    //   color: theme.palette.text.secondary,
+    //   '&.Mui-selected': {
+    //     color: theme.palette.customColors.main,
+    //     backgroundColor: theme.palette.action.active,
+    //     '&:hover': {
+    //       backgroundColor: theme.palette.action.hover
+    //     }
+    //   }
+    // }
   }
 
   return (
@@ -253,18 +254,13 @@ const NavMenuGroup = (props: Props) => {
             })}
             sx={{
               width: '100%',
-              ...conditionalBgColor(),
-              // borderTopRightRadius: 100,
-              // borderBottomRightRadius: 100,
               transition: 'padding-left .25s ease-in-out',
-              // pl: navCollapsed && !navHover ? (collapsedNavWidth - navigationBorderWidth - 24) / 8 : 5.5,
-              // pr: navCollapsed && !navHover ? ((collapsedNavWidth - navigationBorderWidth - 24) / 2 - 5) / 4 : 3.5
             }}
           >
-            {isSubToSub? null : (
+            {isSubToSub ? null : (
               <ListItemIcon
                 sx={{
-                  color: 'text.primary',
+                  color: 'inherit',
                   transition: 'margin .25s ease-in-out',
                   mr: navCollapsed && !navHover ? 0 : 2.5,
                 }}
@@ -275,7 +271,7 @@ const NavMenuGroup = (props: Props) => {
                   iconProps={{
                     sx: {
                       fontSize: '0.875rem',
-                      ...(!parent ? {fontSize: '1.5rem'} : {}),
+                      ...(!parent ? {fontSize: '1rem'} : {}),
                       ...(parent && item.icon ? {fontSize: '0.875rem'} : {})
                     }
                   }}
@@ -283,13 +279,7 @@ const NavMenuGroup = (props: Props) => {
               </ListItemIcon>
             )}
             <MenuItemTextWrapper sx={{...menuGroupCollapsedStyles, ...(isSubToSub ? {ml: 9} : {})}}>
-              <Typography
-                {...((menuTextTruncate || (menuTextTruncate && navCollapsed && !navHover)) && {
-                  noWrap: true
-                })}
-              >
-                <Translations text={item.title}/>
-              </Typography>
+              <Translations text={item.title}/>
               <Box className='menu-item-meta' sx={{ml: 0.8, display: 'flex', alignItems: 'center'}}>
                 {item.badgeContent ? (
                   <Chip

@@ -13,7 +13,14 @@ const menus = (): NavMenu => {
           action: "access",
           subject: "dashboard"
         },
-        ]
+        {
+          title: 'Settings',
+          icon: 'HomeOutline',
+          path: '/settings',
+          action: "access",
+          subject: "settings"
+        },
+      ]
     },
     {
       title: 'Purchase',
@@ -21,56 +28,6 @@ const menus = (): NavMenu => {
       path: '/purchase',
       action: "access",
       subject: "purchase"
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
-    },
-    {
-      title: 'Settings',
-      icon: 'HomeOutline',
-      path: '/settings',
     },
     {
       title: 'Settings',
