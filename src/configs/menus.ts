@@ -5,22 +5,14 @@ const menus = (): NavMenu => {
     {
       title: 'Dashboard',
       icon: 'HomeOutline',
-      children: [
-        {
-          title: 'Dashboard',
-          icon: 'HomeOutline',
-          path: '/dashboard',
-          action: "access",
-          subject: "dashboard"
-        },
-        {
-          title: 'Settings',
-          icon: 'HomeOutline',
-          path: '/settings',
-          action: "access",
-          subject: "settings"
-        },
-      ]
+      path: '/dashboard',
+      action: "access",
+      subject: "dashboard"
+    },
+    {
+      title: 'Manager',
+      icon: 'HomeOutline',
+      path: '/manager',
     },
     {
       title: 'Purchase',
