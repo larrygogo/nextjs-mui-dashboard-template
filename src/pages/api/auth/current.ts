@@ -24,6 +24,7 @@ export default function handler(
   if(user) {
     const {password, ...currentUser} = user
     res.status(200).json({ code: 200, message: 'ok', data: currentUser })
+    return
   }
   res.status(400).json({ code: 400, message: '用户名或密码错误' })
 }

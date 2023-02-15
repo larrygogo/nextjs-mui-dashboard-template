@@ -17,7 +17,6 @@ import {Router} from "next/router";
 import NProgress from 'nprogress'
 import {LayoutPageProps} from "src/@core/layouts/types";
 import {defaultAbility} from "src/configs/acl";
-import 'src/utils/i18n'
 import 'styles/globals.css'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & LayoutPageProps
@@ -75,6 +74,7 @@ const App = (props: ExtendedAppProps) => {
           <LayoutProvider>
             <TemplateConsumer>
               {({config}) => {
+                import('src/utils/i18n')
                 return (
                   <Fragment>
                     <ThemeComponent config={config}>

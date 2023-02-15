@@ -20,6 +20,7 @@ export default function handler(
   if(users.find(u => u.username === username && u.password === password)) {
     res.setHeader('Set-Cookie', `token=${username}; Path=/; HttpOnly`)
     res.status(200).json({ code: 200, message: 'ok' })
+    return
   }
   res.status(400).json({ code: 400, message: '用户名或密码错误' })
 }

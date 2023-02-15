@@ -21,6 +21,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {useAuth} from "../../@core/hooks/useAuth";
 import Translations from "../../@core/layouts/components/Translations";
+import LangDropdown from "../../layouts/components/LangDropdown";
 
 const Card = styled(MuiCard)<CardProps>(({theme}) => ({
   [theme.breakpoints.up('sm')]: {
@@ -65,6 +66,13 @@ const LoginPage: NextPageWithLayout = () => {
       alignItems: 'center',
       justifyContent: 'center',
     }}>
+      <Box sx={{
+        position: 'absolute',
+        top: 10,
+        right: 10,
+      }}>
+        <LangDropdown />
+      </Box>
       <Card>
         <CardContent>
           <Box>

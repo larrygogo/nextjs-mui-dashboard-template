@@ -21,9 +21,10 @@ i18n
     lng: 'zh_CN',
     backend: {
       /* translation file path */
-      loadPath: '/locales/{{lng}}.json'
+      loadPath: '/locales/{{lng}}.json',
+      crossDomain: true,
     },
-    fallbackLng: 'en_US',
+    fallbackLng: 'zh_CN',
     debug: true,
     keySeparator: false,
     react: {
