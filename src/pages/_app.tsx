@@ -2,7 +2,7 @@ import {Fragment, ReactNode} from 'react'
 import Head from 'next/head'
 import type {NextPage} from 'next'
 import type {AppProps} from 'next/app'
-import {TemplateConsumer, LayoutProvider} from 'src/@core/context/LayoutContext'
+import {LayoutConsumer, LayoutProvider} from 'src/@core/context/LayoutContext'
 import {createEmotionCache} from 'src/@core/utils/create-emotion-cache'
 import {CacheProvider, EmotionCache} from "@emotion/react";
 import ThemeComponent from "src/@core/theme/ThemeComponent";
@@ -72,9 +72,9 @@ const App = (props: ExtendedAppProps) => {
     <CacheProvider value={emotionCache}>
       <AuthProvider>
           <LayoutProvider>
-            <TemplateConsumer>
+            <LayoutConsumer>
               {({config}) => {
-                import('src/utils/i18n')
+                import('src/configs/i18n')
                 return (
                   <Fragment>
                     <ThemeComponent config={config}>
@@ -94,7 +94,7 @@ const App = (props: ExtendedAppProps) => {
                   </Fragment>
                 )
               }}
-            </TemplateConsumer>
+            </LayoutConsumer>
           </LayoutProvider>
       </AuthProvider>
     </CacheProvider>

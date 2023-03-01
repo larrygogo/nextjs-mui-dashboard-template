@@ -73,4 +73,4 @@ export const LayoutProvider = ({children, initConfig}: TemplateProviderProps) =>
   )
 }
 
-export const TemplateConsumer = LayoutContext.Consumer
+export const LayoutConsumer = LayoutContext.Consumer

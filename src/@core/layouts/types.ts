@@ -49,12 +49,18 @@ export type NavSectionTitle = {
 export type NavMenu = (NavGroup | NavLink | NavSectionTitle)[]
 
 export type LayoutProps = {
+  title?: string
   menu?: NavMenu
   hidden: boolean
   config: LayoutConfig
+  layout?: Layout
+  content?: Content
+  appBar?: AppBar
+  footer?: Footer
   children: ReactNode
   saveConfig: (values: LayoutConfig) => void
-
+  appBarRender?: (props?: any) => ReactNode | null
+  footerRender?: (props?: any) => ReactNode | null
   appBarContent?: (props?: any) => ReactNode
   footerContent?: (props?: any) => ReactNode
   navMenuContent?: (props?: any) => ReactNode

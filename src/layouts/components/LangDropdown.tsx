@@ -41,7 +41,7 @@ const LangDropdown = (props: Props) => {
   }
 
   useEffect(() => {
-    i18n.changeLanguage(window.localStorage.getItem('lang') || 'en_US').then()
+    i18n?.changeLanguage?.(window.localStorage.getItem('lang') || 'en_US').then()
   }, [i18n])
 
   return (
