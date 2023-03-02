@@ -1,14 +1,16 @@
-import {ReactElement, ReactNode} from "react";
-import {LayoutConfig} from "src/@core/context/types";
-import {AclType, Action} from "../context/AbilityContext";
+import { ReactElement, ReactNode } from "react";
+import { LayoutConfig } from "src/@core/context/types";
+import { AclType, Action } from "../context/AbilityContext";
 
 export type Layout = 'vertical' | 'horizontal' | 'blank' | 'blankWithAppBar'
 
 export type Content = 'full' | 'boxed'
 
-export type AppBar = 'fixed' | 'static' | 'hidden'
+export type Appbar = 'fixed' | 'static' | 'hidden'
 
 export type Footer = 'fixed' | 'static' | 'hidden'
+
+export type Sidebar = 'fixed' | 'static' | 'hidden'
 
 export type ThemeColor = {
   light: string;
@@ -54,9 +56,10 @@ export type LayoutProps = {
   hidden: boolean
   config: LayoutConfig
   layout?: Layout
-  content?: Content
-  appBar?: AppBar
+  appbar?: Appbar
   footer?: Footer
+  sidebar?: Sidebar
+  content?: Content
   children: ReactNode
   saveConfig: (values: LayoutConfig) => void
   appBarRender?: (props?: any) => ReactNode | null

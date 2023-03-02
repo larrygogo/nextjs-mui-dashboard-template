@@ -1,9 +1,11 @@
-import {LayoutProps} from "./types";
-import {styled} from "@mui/material/styles";
+import { LayoutProps } from "./types";
+import { styled } from "@mui/material/styles";
 import Navigation from "src/@core/layouts/components/navigation";
-import {useState} from "react";
-import Box, {BoxProps} from "@mui/material/Box";
+import { useState } from "react";
+import Box, { BoxProps } from "@mui/material/Box";
 import AppBar from "./components/appBar";
+import { LayoutProvider } from "src/@core/context/LayoutContext";
+import { AuthProvider } from "src/@core/context/AuthContext";
 
 const LayoutWrapper = styled('div')({
   height: '100%',
@@ -30,21 +32,25 @@ const ContentWrapper = styled('main')(({ theme }) => ({
 }))
 
 const Layout = (props: LayoutProps) => {
-  const {hidden, children} = props;
+  const { hidden, children } = props;
 
   const [navHover, setNavHover] = useState<boolean>(false);
   const [navVisible, setNavVisible] = useState<boolean>(false);
 
   return (
-    <LayoutWrapper className="layout-wrapper">
-      <Navigation {...props} navVisible={navVisible} setNavVisible={setNavVisible} setNavHover={setNavHover} />
-      <MainContentWrapper className="layout-content-wrapper">
-        <AppBar {...props} navVisible={navVisible} setNavVisible={setNavVisible} />
-        <ContentWrapper>
-          {children}
-        </ContentWrapper>
-      </MainContentWrapper>
-    </LayoutWrapper>
+    <LayoutProvider>
+      <AuthProvider>
+        <LayoutWrapper className="layout-wrapper">
+          <Navigation {...props} navVisible={navVisible} setNavVisible={setNavVisible} setNavHover={setNavHover} />
+          <MainContentWrapper className="layout-content-wrapper">
+            <AppBar {...props} navVisible={navVisible} setNavVisible={setNavVisible} />
+            <ContentWrapper>
+              {children}
+            </ContentWrapper>
+          </MainContentWrapper>
+        </LayoutWrapper>
+      </AuthProvider>
+    </LayoutProvider>
   )
 }
 

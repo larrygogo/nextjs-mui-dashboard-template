@@ -1,9 +1,9 @@
-import {createContext, useEffect, useState} from "react";
-import {AuthContextOptions, AuthContextValue, AuthProviderProps} from "./types";
-import {useRouter} from "next/router";
+import { createContext, useEffect, useState } from "react";
+import { AuthContextOptions, AuthContextValue, AuthProviderProps } from "./types";
+import { useRouter } from "next/router";
 import axios from "axios";
 
-const initialOptions: AuthContextOptions =  {
+const initialOptions: AuthContextOptions = {
   storageKey: 'userData',
   currentUserUrl: '/api/auth/current',
   loginUrl: '/api/auth/login',
@@ -24,22 +24,22 @@ const defaultContextValue: AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue>(defaultContextValue)
 
-const AuthProvider = function<T = any> ({children, options: initOptions}: AuthProviderProps) {
-  const [options, setOptions] = useState<AuthContextOptions>({...initialOptions, ...initOptions})
+const AuthProvider = function <T = any>({ children, options: initOptions }: AuthProviderProps) {
+  const [options, setOptions] = useState<AuthContextOptions>({ ...initialOptions, ...initOptions })
   const [userInfo, setUserInfo] = useState<T | null>(defaultContextValue.userInfo)
   const [loading, setLoading] = useState<boolean>(defaultContextValue.loading)
 
   const router = useRouter()
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       setLoading(true)
       await axios
         .get(options.currentUserUrl)
         .then(response => {
           setLoading(false)
-          if(response.data.code === 200) {
-            setUserInfo({...response.data.data})
+          if (response.data.code === 200) {
+            setUserInfo({ ...response.data.data })
           }
         })
         .catch(() => {
@@ -57,7 +57,7 @@ const AuthProvider = function<T = any> ({children, options: initOptions}: AuthPr
           .get(options.currentUserUrl)
           .then(async response => {
             const fallback = router.query.fallback
-            if(response.data.code === 200) {
+            if (response.data.code === 200) {
               setUserInfo(response.data.data)
               await window.localStorage.setItem(options.storageKey, JSON.stringify(response.data.data))
               const redirectUrl = fallback && fallback !== '/' ? fallback : '/'
@@ -96,4 +96,4 @@ const AuthProvider = function<T = any> ({children, options: initOptions}: AuthPr
   )
 }
 
-export {AuthContext, AuthProvider}
+export { AuthContext, AuthProvider }
