@@ -3,7 +3,7 @@ import {useRef, useState} from "react";
 import Drawer from "./Drawer";
 import NavHeader from "./NavHeader";
 import NavMenuItems from "./NavMenuItems";
-import {NavMenu} from "../../types";
+import {NavMenu} from "../../../types";
 import {styled} from "@mui/material/styles";
 import Box, {BoxProps} from "@mui/material/Box";
 import PerfectScrollbar from 'react-perfect-scrollbar'

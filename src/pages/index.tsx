@@ -33,6 +33,8 @@ const Home = () => {
   }, [])
 
   return <Spinner />
+  // return <div>Home</div>
 }
-
+// Home.getLayout = (page) => page
+// Home.authGuard = false
 export default Home

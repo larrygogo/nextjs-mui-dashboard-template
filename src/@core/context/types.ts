@@ -1,10 +1,11 @@
 import {ReactNode} from "react";
-import {AppBar, Content, Footer, ThemeColor} from "src/@core/layouts/types";
+import {Layout, AppBar, Content, Footer, ThemeColor} from "src/@core/layouts/types";
 import {PaletteMode} from "@mui/material";
 
 export type LayoutConfig = {
+  name?: string
   logo?: string
-  // layout?: Layout
+  layout?: Layout
   appBar?: AppBar
   footer?: Footer
   minLogo?: string
@@ -14,7 +15,7 @@ export type LayoutConfig = {
   navCollapsed?: boolean
   themeColor: ThemeColor
   navAllowHover?: boolean
-  allowModeSwitch?: boolean
+  direction?: 'ltr' | 'rtl'
   navAllowCollapse?: boolean
   navCollapsedWidth?: number
   menuTextTruncate?: boolean

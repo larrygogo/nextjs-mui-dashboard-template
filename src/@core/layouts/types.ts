@@ -52,9 +52,8 @@ export type LayoutProps = {
   menu?: NavMenu
   hidden: boolean
   config: LayoutConfig
-  children: ReactNode
+  children?: ReactNode
   saveConfig: (values: LayoutConfig) => void
-
   appBarContent?: (props?: any) => ReactNode
   footerContent?: (props?: any) => ReactNode
   navMenuContent?: (props?: any) => ReactNode

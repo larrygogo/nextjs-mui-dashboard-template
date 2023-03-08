@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import UserDropdown from "./UserDropdown";
 import {FormatAlignJustify} from 'mdi-material-ui';
 import IconButton from "@mui/material/IconButton";
-import LangDropdown from "./LangDropdown";
 
 type Props = {
   hidden: boolean
@@ -34,7 +33,7 @@ const AppBarContent = (props: Props) => {
           alignItems: 'center',
           gap: 6
         }}>
-          <LangDropdown />
+          {/*<LangDropdown />*/}
           <UserDropdown />
         </Box>
       </Box>

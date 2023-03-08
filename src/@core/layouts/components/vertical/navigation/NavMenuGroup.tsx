@@ -31,9 +31,9 @@ import * as Icons from 'mdi-material-ui'
 import NavMenuItems from './NavMenuItems'
 import Translations from 'src/@core/layouts/components/Translations'
 import CanViewNavGroup from 'src/@core/layouts/components/acl/CanViewNavGroup'
-import {LayoutConfig} from "../../../context/types";
+import {LayoutConfig} from "../../../../context/types";
 import {ListItemButtonProps} from "@mui/material";
-import UserIcon from "../UserIcon";
+import UserIcon from "../../UserIcon";
 
 interface Props {
   item: NavGroup
@@ -97,11 +97,6 @@ const MenuGroupToggleRightIcon = styled(ChevronRight)(({theme}) => ({
   transition: 'transform .25s ease-in-out'
 }))
 
-const MenuGroupToggleLeftIcon = styled(ChevronLeft)(({theme}) => ({
-  color: theme.palette.text.primary,
-  transition: 'transform .25s ease-in-out'
-}))
-
 const NavMenuGroup = (props: Props) => {
   // ** Props
   const {
@@ -121,7 +116,7 @@ const NavMenuGroup = (props: Props) => {
   const theme = useTheme()
   const router = useRouter()
   const currentURL = router.pathname
-  const {navCollapsed, menuTextTruncate, verticalNavToggleType} = config
+  const {navCollapsed, verticalNavToggleType} = config
 
   // @ts-ignore
   const IconTag = parent && !item.icon ? Icons['CircleOutline'] : Icons[item.icon]
@@ -226,19 +221,6 @@ const NavMenuGroup = (props: Props) => {
     }
   }
 
-  const conditionalBgColor = () => {
-    // return {
-    //   color: theme.palette.text.secondary,
-    //   '&.Mui-selected': {
-    //     color: theme.palette.customColors.main,
-    //     backgroundColor: theme.palette.action.active,
-    //     '&:hover': {
-    //       backgroundColor: theme.palette.action.hover
-    //     }
-    //   }
-    // }
-  }
-
   return (
     <CanViewNavGroup navGroup={item}>
       <Fragment>
@@ -267,14 +249,7 @@ const NavMenuGroup = (props: Props) => {
               >
                 <UserIcon
                   icon={IconTag}
-                  componentType='menu'
-                  iconProps={{
-                    sx: {
-                      fontSize: '0.875rem',
-                      ...(!parent ? {fontSize: '1rem'} : {}),
-                      ...(parent && item.icon ? {fontSize: '0.875rem'} : {})
-                    }
-                  }}
+                  fontSize={parent && !item.icon ? '0.875rem' : '1rem'}
                 />
               </ListItemIcon>
             )}

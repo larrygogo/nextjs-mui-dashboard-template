@@ -6,8 +6,8 @@ import MuiListSubheader, {ListSubheaderProps} from '@mui/material/ListSubheader'
 
 // ** Types
 import {NavSectionTitle} from 'src/@core/layouts/types'
-import Translations from "../Translations";
-import {LayoutConfig} from "../../../context/types";
+import Translations from "../../Translations";
+import {LayoutConfig} from "../../../../context/types";
 
 // ** Custom Components Imports
 

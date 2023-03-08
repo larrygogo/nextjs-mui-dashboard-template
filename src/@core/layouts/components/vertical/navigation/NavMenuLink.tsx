@@ -1,17 +1,17 @@
 import {ListItem, ListItemButton, ListItemButtonProps, ListItemIcon} from "@mui/material";
 import Link from "next/link";
-import {NavLink} from "../../types";
+import {NavLink} from "src/@core/layouts/types";
 import {ElementType, ReactNode} from "react";
 import {styled} from "@mui/material/styles";
 import Box, {BoxProps} from "@mui/material/Box";
-import {handleURLQueries} from "../../utils";
+import {handleURLQueries} from "src/@core/layouts/utils";
 import {useRouter} from "next/router";
-import {LayoutConfig} from "../../../context/types";
-import Translations from "../Translations";
-import CanViewNavLink from "../acl/CanViewNavLink";
-import {hexToRGBA} from "../../../utils/hex-to-rgba";
+import {LayoutConfig} from "src/@core/context/types";
+import Translations from "src/@core/layouts/components/Translations";
+import CanViewNavLink from "src/@core/layouts/components/acl/CanViewNavLink";
+import {hexToRGBA} from "src/@core/utils/hex-to-rgba";
 import {CircleOutline} from "mdi-material-ui";
-import UserIcon from "../UserIcon";
+import UserIcon from "src/@core/layouts/components/UserIcon";
 import * as Icons from "mdi-material-ui";
 
 const MenuNavLink = styled(ListItemButton)<
@@ -94,16 +94,9 @@ const NavMenuLink = (props: Props) => {
               }}
             >
               <UserIcon
-                icon={IconTag}
-                componentType='menu'
-                iconProps={{
-                  sx: (theme) => ({
-                    fontSize: '0.875rem',
-                    color: isNavLinkActive() ? theme.palette.primary.main : theme.palette.text.secondary,
-                    ...(!parent ? {fontSize: '1rem'} : {}),
-                    ...(parent && item.icon ? {fontSize: '1rem'} : {})
-                  })
-                }}
+                icon={ parent && !item.icon ? 'mdi:circle' : item.icon}
+                fontSize={parent && !item.icon ? '0.875rem' : '1rem'}
+                color={isNavLinkActive() ? 'primary.main' : 'text.secondary'}
               />
             </ListItemIcon>
             <MenuItemTextMetaWrapper>

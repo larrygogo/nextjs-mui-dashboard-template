@@ -1,10 +1,10 @@
 import {ReactNode} from "react";
 import {useLayout} from "src/@core/hooks/useLayout";
-import Layout from "src/@core/layouts/Layout";
 import menus from "src/configs/menus";
 import {useMediaQuery} from "@mui/material";
 import {Theme} from "@mui/material/styles";
 import AppBarContent from "src/layouts/components/AppBarContent";
+import Layout from "src/@core/layouts/Layout";
 
 interface Props {
   children: ReactNode

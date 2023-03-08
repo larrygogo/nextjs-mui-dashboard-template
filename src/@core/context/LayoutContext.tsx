@@ -1,24 +1,6 @@
 import {LayoutConfig, LayoutContextValue, TemplateProviderProps} from "./types";
 import {createContext, useEffect, useState} from "react";
-
-const initialConfig: LayoutConfig = {
-  logo: '/images/logo.svg',
-  mode: 'light',
-  appBar: 'fixed',
-  footer: 'static',
-  content: 'full',
-  navWidth: 233,
-  navCollapsedWidth: 80,
-  navCollapsed: false,
-  navAllowCollapse: false,
-  menuTextTruncate: true,
-  themeColor: {
-    main: '#5A8DEE',
-    light: '#5A8DEE',
-    dark: '#5A8DEE',
-  }
-}
-
+import initialConfig from 'src/configs/layout'
 // 缓存设置
 const storeConfig = (theme: LayoutConfig) => {
   const initTheme = Object.assign({}, theme)
