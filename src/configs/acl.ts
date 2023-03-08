@@ -15,6 +15,8 @@ const defineAbility = (ability: AppAbility, user: any) => {
   const { can, rules } = new AbilityBuilder<AppAbility>(PureAbility)
   if (user.role === 'admin') {
     can('manage', 'all');
+    can('access', 'dashboard');
+    can('access', 'purchase');
   } else {
     can('access', 'dashboard');
     can('access', 'purchase');

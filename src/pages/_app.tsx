@@ -74,7 +74,7 @@ const App = (props: ExtendedAppProps) => {
           <LayoutProvider>
             <TemplateConsumer>
               {({config}) => {
-                import('src/utils/i18n')
+                import('src/configs/i18n')
                 return (
                   <Fragment>
                     <ThemeComponent config={config}>

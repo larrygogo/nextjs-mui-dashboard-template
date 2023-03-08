@@ -53,7 +53,6 @@ const LoginPage: NextPageWithLayout = () => {
 
   const onSubmit = async (data: any) => {
     const {username, password} = data
-    console.log(username, password)
     await auth.login({username, password}).catch(() => {
       setError('username', {type: 'manual', message: 'Invalid username or password'})
     })

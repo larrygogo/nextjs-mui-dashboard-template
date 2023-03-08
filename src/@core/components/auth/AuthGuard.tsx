@@ -13,7 +13,6 @@ const AuthGuard = (props: AuthGuardProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(auth)
     if (!router.isReady) {
       return
     }

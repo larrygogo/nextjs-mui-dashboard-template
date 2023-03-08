@@ -35,13 +35,13 @@ const LangDropdown = (props: Props) => {
   }
 
   const changeLang = async (lang: string) => {
-    await i18n.changeLanguage(lang)
+    await i18n.changeLanguage?.(lang)
     window.localStorage.setItem('lang', lang)
     handleDropdownClose()
   }
 
   useEffect(() => {
-    i18n.changeLanguage(window.localStorage.getItem('lang') || 'en_US').then()
+    i18n.changeLanguage?.(window.localStorage.getItem('lang') || 'en_US').then()
   }, [i18n])
 
   return (
